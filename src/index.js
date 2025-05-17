@@ -4,7 +4,18 @@ import dotenv from "dotenv";
 import { DB_NAME } from "./constants.js";
 import connectToDB from "./bd/index.js";
 
-connectToDB();
+connectToDB()
+.then(()=>{
+    console.log(process.env.PORT || 8000 , ()=>{
+        console.log(`server is running on port 8000 
+        ${process.env.PORT}`);
+    })
+})
+.catch((error)=>{
+    console.log("mongo db connection error",error)
+    process.exit(1)
+})
+
 
 
 dotenv.config({ path: "./env" });
